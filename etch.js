@@ -10,11 +10,21 @@ const grid = document.getElementById("grid");
 let eraseOn = false; 
 const erase = document.getElementById("eraser");
 
+//Color change function
+let colorpicker = document.getElementById('colorpicker');
+
+
+
+
+//eraser function
 erase.addEventListener('click', () => {
     eraseOn = true;
    
 });
 
+colorpicker.addEventListener('click', () => {
+    eraseOn = false;
+})
 
 function makeGrid(rows,cols){
     grid.style.setProperty('--grid-rows', rows);
@@ -26,7 +36,7 @@ function makeGrid(rows,cols){
     };
 };
 let isDrawing = false; 
-// Add event listeners
+// Add event listeners for drawing and erasing
 grid.addEventListener('mousedown', () => {
     isDrawing = true;
   });
@@ -43,10 +53,15 @@ grid.addEventListener('mousedown', () => {
     if (!isDrawing) return;
     
     const cell = event.target;
+ 
+  
+  
     if (eraseOn){ //BUG FIX THIS
         cell.style.backgroundColor = 'white';
-    }else{
-    cell.style.backgroundColor = 'black'; // Change this to your desired trail color
+    }else {
+        //Picking color
+        let color = colorpicker.value;
+        cell.style.backgroundColor = color;
     }
   });
 //   In this code, we're using the mousedown, mouseup, mouseleave, and mousemove events to determine whether the mouse button is held down. When the mouse is moved while the button is held down (mousemove event), the cells' background color is updated to create the trail effect.
