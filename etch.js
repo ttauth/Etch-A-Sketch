@@ -13,7 +13,7 @@ const erase = document.getElementById("eraser");
 //Color change function
 let colorpicker = document.getElementById('colorpicker');
 
-
+const reset = document.getElementById("reset");
 
 
 //eraser function
@@ -26,6 +26,18 @@ colorpicker.addEventListener('click', () => {
     eraseOn = false;
 })
 
+reset.addEventListener('click', () =>{
+
+         // Change grid background color to black
+    grid.style.backgroundColor = 'black';
+
+    // Clear the colors of all grid cells
+    const cells = document.querySelectorAll('.grid-item');
+    cells.forEach(cell => {
+        cell.style.backgroundColor = '';
+    });
+
+})
 function makeGrid(rows,cols){
     grid.style.setProperty('--grid-rows', rows);
     grid.style.setProperty('--grid-cols',cols);
@@ -34,6 +46,7 @@ function makeGrid(rows,cols){
       
         grid.appendChild(cell).className = "grid-item";
     };
+
 };
 let isDrawing = false; 
 // Add event listeners for drawing and erasing
@@ -55,9 +68,9 @@ grid.addEventListener('mousedown', () => {
     const cell = event.target;
  
   
-  
+
     if (eraseOn){ //BUG FIX THIS
-        cell.style.backgroundColor = 'white';
+        cell.style.backgroundColor = 'black';
     }else {
         //Picking color
         let color = colorpicker.value;

@@ -1,11 +1,12 @@
 *{
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     font-family: 'Roboto', sans-serif;
 }
 .name{
+    font-family: system-ui, sans-serif;
     font-size: 50px;
-    color: darkgoldenrod;
+    color: #fff;
    position:absolute;
    top: 0;
     text-align: center;
@@ -35,6 +36,8 @@ button{
 }
 
   #grid {
+    background-color: #ddd;
+    color: #ddd;
     display: grid;
     border: 1px solid #ddd;
     align-self: center;
@@ -56,10 +59,75 @@ button{
   .grid-item:hover {
     background-color: aqua;
   }
-  
+
   footer{
     text-align: center;
     padding: 1em;
     bottom: 0;
     position: absolute;
   }
+
+  button {
+    --c:  #229091; /* the color*/
+    
+    box-shadow: 0 0 0 .1em inset var(--c); 
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background: 
+      var(--_g) calc(var(--_p,0%) - 100%) 0%,
+      var(--_g) calc(200% - var(--_p,0%)) 0%,
+      var(--_g) calc(var(--_p,0%) - 100%) 100%,
+      var(--_g) calc(200% - var(--_p,0%)) 100%;
+    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+  }
+  button:hover {
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+  }
+  button:active {
+    box-shadow: 0 0 9e9q inset #0009; 
+    background-color: var(--c);
+    color: #fff;
+  }
+  
+  
+  
+  /* body {
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    place-content: center;
+    grid-auto-flow: column;
+    gap: 40px;
+    background: #F2DCA2;
+  } */
+  button {
+    font-family: system-ui, sans-serif;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: .2em .4em;
+    font-weight: bold;  
+    border: none;
+  }
+  button.colorpicker {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: none;
+    background: conic-gradient(
+        from 0deg,
+        red 0deg 60deg,
+        yellow 60deg 120deg,
+        green 120deg 180deg,
+        cyan 180deg 240deg,
+        blue 240deg 300deg,
+        magenta 300deg 360deg
+    );
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+button.colorpicker:hover {
+    transform: scale(1.1);
+}
